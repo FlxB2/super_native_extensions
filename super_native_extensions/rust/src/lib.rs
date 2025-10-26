@@ -98,7 +98,7 @@ impl DataTransferPlugin {
         context.drag_manager();
         context.drop_manager();
         context.keyboard_map_manager();
-        context.hot_key_manager();
+        //context.hot_key_manager();
         context.menu_manager();
         context.clipboard_event_manager();
         DataTransferPlugin { _context: context }

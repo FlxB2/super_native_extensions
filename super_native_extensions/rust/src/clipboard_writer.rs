@@ -48,7 +48,8 @@ impl ClipboardWriter {
             let weak_self = self.weak_self.clone();
             let notifier = DropNotifier::new(move || {
                 if let Some(this) = weak_self.upgrade() {
-                    this.release_data_provider(isolate_id, provider_id);
+                    // When suspending flutters engine directly all isolates are already dead at this point
+                    // this.release_data_provider(isolate_id, provider_id);
                 }
             });
             providers.push((provider, Arc::new(notifier.into())));

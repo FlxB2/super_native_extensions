@@ -181,9 +181,10 @@ impl DragManager {
             let handle: DataProviderHandle = DropNotifier::new(move || {
                 if let Some(this) = weak_self.upgrade() {
                     // Isolate could have been destroyed in the meanwhile.
+                    /* This check does not quite seem to work when suspending flutters engine directly
                     if this.contexts.borrow().contains_key(&isolate) {
                         this.release_data_provider(isolate, provider_id);
-                    }
+                    }*/ 
                 }
             })
             .into();
