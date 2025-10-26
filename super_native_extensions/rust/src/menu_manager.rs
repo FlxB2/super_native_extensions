@@ -120,11 +120,6 @@ impl MenuManager {
         isolate: IsolateId,
         request: MenuContextInitRequest,
     ) -> NativeExtensionsResult<()> {
-        if self.contexts.borrow().get(&isolate).is_some() {
-            // Can happen during hot reload
-            warn!("MenuContext already exists for isolate {:?}", isolate);
-            return Ok(());
-        }
         let context = Rc::new(PlatformMenuContext::new(
             isolate,
             request.engine_handle,

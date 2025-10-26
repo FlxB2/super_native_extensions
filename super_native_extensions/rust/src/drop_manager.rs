@@ -192,11 +192,6 @@ impl DropManager {
         isolate: IsolateId,
         request: DropContextInitRequest,
     ) -> NativeExtensionsResult<()> {
-        if self.contexts.borrow().get(&isolate).is_some() {
-            // Can happen during hot reload
-            warn!("DropContext already exists for isolate {:?}", isolate);
-            return Ok(());
-        }
         let context = Rc::new(PlatformDropContext::new(
             isolate,
             request.engine_handle,

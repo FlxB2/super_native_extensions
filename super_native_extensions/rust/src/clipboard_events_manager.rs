@@ -55,11 +55,6 @@ impl ClipboardEventManager {
     }
 
     fn new_clipboard_events_manager(&self, isolate: IsolateId) -> NativeExtensionsResult<()> {
-        if self.platform_managers.borrow().get(&isolate).is_some() {
-            // Can happen during hot reload
-            warn!("DragContext already exists for isolate {:?}", isolate);
-            return Ok(());
-        }
         let context = Rc::new(PlatformClipboardEventManager::new(
             isolate,
             self.weak_self.clone(),
